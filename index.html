@@ -73,6 +73,20 @@
             color: #fff;
         }
 
+        /* Message to prompt user interaction */
+        .interaction-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 1rem;
+            border-radius: 10px;
+            z-index: 10;
+            text-align: center;
+            display: none; /* Hidden initially */
+        }
+
         @media (max-width: 768px) {
             .footer-text {
                 font-size: 0.8rem;
@@ -133,9 +147,14 @@
             <p class="mt-2">May this Diwali bring endless blessings, joy, and prosperity to you and your family.</p>
             <p class="mt-2">Let the glow of Diwali lights brighten your life with peace and prosperity.</p>
         </div>
+
+        <!-- Interaction message -->
+        <div class="interaction-message" id="interactionMessage">
+            <p>Tap anywhere to start the background music!</p>
+        </div>
     </main>
 
-    <audio id="background-music" autoplay loop>
+    <audio id="background-music" loop>
         <source src="S1.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
@@ -145,7 +164,17 @@
     </footer>
 
     <script>
-        // Add any JavaScript here if needed
+        const audio = document.getElementById('background-music');
+        const interactionMessage = document.getElementById('interactionMessage');
+
+        // Show interaction message
+        interactionMessage.style.display = 'block';
+
+        // Add event listener for user interaction
+        document.body.addEventListener('click', function() {
+            audio.play();
+            interactionMessage.style.display = 'none'; // Hide the message after interaction
+        });
     </script>
 </body>
 </html>
